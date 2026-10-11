@@ -1,0 +1,22 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      # No Ollama server here: the conformance kit and the unit tests talk to a fake one.
+      - name: Test
+        run: uv run --extra dev pytest -q -rs
+      - name: Lint
+        run: |
+          uv run --extra dev ruff check .
+          uv run --extra dev ruff format --check .
