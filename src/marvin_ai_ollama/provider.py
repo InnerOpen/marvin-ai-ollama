@@ -23,6 +23,7 @@ DEFAULT_BASE_URL = "http://localhost:11434"
 
 class OllamaProvider(AIProvider):
     provider_type = "ollama"
+    logo = "logo.svg"  # the Ollama mark: Marvin shows it beside the provider's name
     display_name = "Ollama"
     supports_vision = False
     supports_structured_output = True
